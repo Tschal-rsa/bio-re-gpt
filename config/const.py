@@ -44,13 +44,11 @@ class Const:
         )
 
     task_ent_labels = {
-        "BB": ["Habitat", "Microorganism", "Phenotype", "Geographical", "_FRAGMENT"],
         "DrugProt": ["CHEMICAL", "GENE"],
         "DrugVar": ["drug", "variant"],
     }
 
     task_rel_labels = {
-        "BB": ["Exhibits", "Lives_In", "_lexicallyChainedTo"],
         "DrugProt": [
             "product or substrate",
             "activator",
@@ -76,11 +74,6 @@ class Const:
             "part of": "acts as a part to",
             "inhibitor": "acts as an inhibitor to",
         },
-        "BB": {
-            "Exhibits": "exhibits",
-            "Lives_In": "lives in",
-            "_lexicallyChainedTo": "is lexically chained to",
-        },
         "DrugVar": {
             "resistance": "acts as the resistance to",
             "resistance or non-response": "does not response to",
@@ -92,7 +85,6 @@ class Const:
     task_limit_prompts = {
         "DrugProt": "In DrugProt, subjects must be CHEMICAL whereas objects must be GENE.",
         "DrugVar": "In DrugVar, subjects must be variant whereas objects must be drug.",
-        "BB": "In Bacteria Biotope, for relation Exhibits, subjects must be Microorganism or _FRAGMENT whereas objects must be Phenotype or _FRAGMENT. For relation Lives_In, subjects must be Microorganism or _FRAGMENT whereas objects must be Habitat, Geographical or _FRAGMENT. For relation _lexicallyChainedTo, subjects must be _FRAGMENT whereas objects can be all others, i.e. Habitat, Microorganism, Phenotype or Geographical."
     }
 
     task_examples = {
@@ -329,107 +321,5 @@ class Const:
                     },
                 ),
             ),
-        ],
-        "BB": [
-            Sample(
-                "However, this strain has also been shown to exhibit some potential risks for human health (Coton et al., 2012) even if no sanitary problems have been linked to the presence of this species as of this time.The objective of this study was to determine the capacity of colonization of two Gram-negative bacteria, Psychrobacter celer and H. alvei, and their impact on the growth of other microbial populations and on aroma compound production at the surface of experimental smear soft cheese. ",
-                Result(
-                    {
-                        Entity("human", "Habitat"),
-                        Entity("Gram-negative", "Phenotype"),
-                        Entity("Psychrobacter celer", "Microorganism"),
-                        Entity("H. alvei", "Microorganism"),
-                        Entity("microbial populations", "Habitat"),
-                        Entity("surface of experimental smear soft cheese", "Habitat"),
-                        Entity("experimental smear soft cheese", "Habitat"),
-                    },
-                    {
-                        Relation(
-                            Entity("Psychrobacter celer", "Microorganism"),
-                            Entity("Gram-negative", "Phenotype"),
-                            "Exhibits",
-                        ),
-                        Relation(
-                            Entity("H. alvei", "Microorganism"),
-                            Entity("experimental smear soft cheese", "Habitat"),
-                            "Lives_In",
-                        ),
-                        Relation(
-                            Entity("H. alvei", "Microorganism"),
-                            Entity("surface of experimental smear soft cheese", "Habitat"),
-                            "Lives_In",
-                        ),
-                        Relation(
-                            Entity("H. alvei", "Microorganism"),
-                            Entity("Gram-negative", "Phenotype"),
-                            "Exhibits",
-                        ),
-                        Relation(
-                            Entity("Psychrobacter celer", "Microorganism"),
-                            Entity("experimental smear soft cheese", "Habitat"),
-                            "Lives_In",
-                        ),
-                        Relation(
-                            Entity("Psychrobacter celer", "Microorganism"),
-                            Entity("surface of experimental smear soft cheese", "Habitat"),
-                            "Lives_In",
-                        ),
-                    }
-                )
-            ),
-            Sample(
-                "A large outbreak of Salmonella Paratyphi A infection among israeli travelers to Nepal.In Asia, Salmonella Paratyphi A is an emerging infection, and travelers are increasingly at risk. ",
-                Result(
-                    {
-                        Entity("Salmonella Paratyphi A", "Microorganism"),
-                        Entity("israeli travelers", "Habitat"),
-                        Entity("Nepal", "Geographical"),
-                        Entity("Asia", "Geographical"),
-                        Entity("travelers", "Habitat"),
-                    },
-                    {
-                        Relation(
-                            Entity("Salmonella Paratyphi A", "Microorganism"),
-                            Entity("israeli travelers", "Habitat"),
-                            "Lives_In",
-                        ),
-                        Relation(
-                            Entity("Salmonella Paratyphi A", "Microorganism"),
-                            Entity("Nepal", "Geographical"),
-                            "Lives_In",
-                        ),
-                        Relation(
-                            Entity("Salmonella Paratyphi A", "Microorganism"),
-                            Entity("Asia", "Geographical"),
-                            "Lives_In",
-                        ),
-                    }
-                )
-            ),
-            Sample(
-                "The pathogens were taken from blood, urine and sputum of patients who accepted chemotherapy from years 2001 to 2005, then were isolated and identified. ",
-                Result(
-                    {
-                        Entity("pathogens", "Phenotype"),
-                        Entity("blood", "_FRAGMENT"),
-                        Entity("urine", "_FRAGMENT"),
-                        Entity("sputum of patients who accepted chemotherapy", "Habitat"),
-                        Entity("of patients who accepted chemotherapy", "Habitat"),
-                        Entity("patients who accepted chemotherapy", "Habitat"),
-                    },
-                    {
-                        Relation(
-                            Entity("blood", "_FRAGMENT"),
-                            Entity("of patients who accepted chemotherapy", "Habitat"),
-                            "_lexicallyChainedTo",
-                        ),
-                        Relation(
-                            Entity("urine", "_FRAGMENT"),
-                            Entity("of patients who accepted chemotherapy", "Habitat"),
-                            "_lexicallyChainedTo",
-                        ),
-                    }
-                )
-            )
         ],
     }

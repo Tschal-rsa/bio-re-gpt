@@ -1,5 +1,5 @@
 class Config:
-    path = "BB"
+    path = "DrugVar"
 
     @property
     def dataset(self) -> str:

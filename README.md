@@ -13,21 +13,20 @@ This repository is the official implementation of Bio-RE-GPT, a baseline model f
 
 Available datasets:
 
-1. BB (Bacteria Biotope)
-2. DrugVar
-3. DrugVar-500
-4. DrugVar-200
-5. DrugProt
-6. DrugProt-500
+1. DrugVar
+2. DrugVar-500
+3. DrugVar-200
+4. DrugProt
+5. DrugProt-500
 6. DrugProt-200
 
 ```bash
-python main.py BB
+python main.py DrugVar
 ```
 
 The default model is `gpt-4`. If you want to try out `gpt-3.5-turbo`, please run:
 
 ```bash
-python main.py BB --model gpt-3.5-turbo
+python main.py DrugVar --model gpt-3.5-turbo
 ```
 
