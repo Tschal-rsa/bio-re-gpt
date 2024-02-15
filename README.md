@@ -9,9 +9,11 @@ This repository is the official implementation of Bio-RE-GPT, a baseline model f
 1. Python 3.11 (recommended)
 2. `openai` (set your API key in `$OPENAI_API_KEY`)
 
-## Prompting
+## Datasets
 
-Available datasets:
+All the datasets we use are publicly available: [DrugVar](https://drive.google.com/drive/folders/1HJRP17ie-CoLRZFaF28BzVFVKoPcfLPo) and [DrugProt](https://zenodo.org/records/5119892).
+
+Preprocessed datasets (in data/):
 
 1. DrugVar
 2. DrugVar-500
@@ -19,6 +21,8 @@ Available datasets:
 4. DrugProt
 5. DrugProt-500
 6. DrugProt-200
+
+## Prompting
 
 ```bash
 python main.py DrugVar
