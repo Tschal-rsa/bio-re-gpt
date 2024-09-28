@@ -5,7 +5,7 @@ from config import Sample, Eval, evaluate, Const, Config
 class Baseline:
     def __init__(self, config: Config) -> None:
         self.config = config
-        self.system_message = Message("system", Const.system_text)
+        self.system_message = Message("system", Const.system_text(config.ner))
         self.example_messages = [
             message
             for example in Const.task_examples[config.dataset]
@@ -26,7 +26,7 @@ class Baseline:
         return evaluate(response.content, sample.result)
 
     def wrap_question(self, sample: Sample, is_example: bool = False) -> Message:
-        question = sample.text + " " + Const.question_text(self.config.dataset)
+        question = sample.text + " " + Const.question_text(self.config.dataset, self.config.ner)
         return Message("user", question, is_example)
 
     def wrap_answer(self, sample: Sample, is_example: bool = False) -> Message:

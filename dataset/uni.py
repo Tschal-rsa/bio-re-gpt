@@ -4,7 +4,7 @@ import json
 
 class UniDataset:
     def __init__(self, config: Config) -> None:
-        path = Const.data_path(config.path)
+        path = Const.data_path(config.path, config.is_train_set)
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
         self.samples: list[Sample] = []

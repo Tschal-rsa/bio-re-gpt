@@ -10,4 +10,10 @@ class Config:
         else:
             return self.path
     
+    @property
+    def ner(self) -> bool:
+        return "CRAFT" in self.dataset
+    
+    is_train_set = False
+
     model = "gpt-4"
